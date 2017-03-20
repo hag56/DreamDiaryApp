@@ -2,6 +2,7 @@ package is.hi.hbv601g.draumadagbok;
 import android.net.Uri;
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -13,6 +14,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Date;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -46,9 +48,25 @@ public class LoginManager {
             Log.i(TAG, "Received: " + res);
 
             JSONObject jsonob = new JSONObject(res);
-            return new User(jsonob.getInt("id"),jsonob.getString("name"),"");
+            User user = new User(jsonob.getInt("id"),jsonob.getString("name"),"");
+            JSONArray jsonA = jsonob.getJSONArray("dreams");
+            for(int i = 0; i < jsonA.length(); i++){
+                JSONObject jsDream = jsonA.getJSONObject(i);
 
-            //User res = POSTData(serverurl, postData);
+                Dream dream = new Dream();
+                dream.setName(jsDream.getString("name"));
+                dream.setId(jsDream.getInt("id"));
+                dream.setUserId(jsDream.getInt("userId"));
+                //dream.setDate((Date)jsDream.getJSONObject("date")); VESEN!!!!!
+                dream.setContent(jsDream.getString("content"));
+                dream.setInterpretation(jsDream.getString("interpretation"));
+
+                user.addDream(dream);
+            }
+            return user;
+
+
+            //User res = POSTData(serverurl, postdata);
             //return res;
         }
         catch(Exception e){
@@ -67,13 +85,13 @@ public class LoginManager {
             RestTemplate restTemplate = new RestTemplate();
             restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 
-            HttpEntity<String> response = restTemplate.exchange(serverurl, HttpMethod.POST, new HttpEntity<User>(param), String.class);
+            /*HttpEntity<String> response = restTemplate.exchange(serverurl, HttpMethod.POST, new HttpEntity<User>(param), String.class);
 
             String resultString = response.getBody();
             HttpHeaders headers = response.getHeaders();
-            Log.i(TAG, resultString);
-            User user = restTemplate.postForObject(serverurl, param, User.class);
-            return user;
+            Log.i(TAG, resultString);*/
+            return restTemplate.postForObject(serverurl, param, User.class);
+
 
 
         } catch (Exception e) {

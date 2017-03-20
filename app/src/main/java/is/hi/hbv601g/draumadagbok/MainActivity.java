@@ -2,6 +2,8 @@ package is.hi.hbv601g.draumadagbok;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final String mUserName = getIntent().getStringExtra(USER_NAME); //skiptum út fyrir User
+        final String mUserName = getIntent().getStringExtra(USER_NAME);
         TextView texti = (TextView) findViewById(R.id.textView);
         String welcomeUser = "Velkominn " + mUserName ;
         texti.setText(welcomeUser);
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         i.putExtra(USER_NAME, name);
         return i;
     }
+
 
 
 }

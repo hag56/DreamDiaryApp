@@ -17,10 +17,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //setRetainInstance(true);
-        AsyncTask task = new FetchUserTask();
-
-
 
         Button mLoginButton = (Button) findViewById(R.id.login_button);
         Button mSkipButton = (Button) findViewById(R.id.skip_button);

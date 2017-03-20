@@ -17,29 +17,29 @@ public class User {
     private String password;
     private String passwordConfirm;
     private int id;
-    private List<Dream> dreamList;
+    private dreamList dreams;
 
     //Constructors
     public User(){
-        dreamList = new ArrayList<Dream>();
+        dreams = new dreamList();
     }
 
 
     public User(int userId,
                  String userName,
                 String userPassword,
-                 List<Dream> dreams) {
+                 dreamList dreams) {
         this.name = userName;
         this.id = userId;
         this.password = userPassword;
-        this.dreamList = dreams;
+        this.dreams = dreams;
 
     }
     public User(int userId, String userName, String userPassword) {
         this.name = userName;
         this.id = userId;
         this.password = userPassword;
-        this.dreamList = new ArrayList<Dream>();
+        this.dreams = new dreamList();
     }
 
     // Notkun:
@@ -90,18 +90,18 @@ public class User {
     }
 
     public void setDreams(List<Dream> dreams){
-        this.dreamList = dreams;
+        this.dreams.setDreams(dreams);
     }
     public void resetDreams(){
-        this.dreamList = new ArrayList<Dream>();
+        this.dreams = new dreamList();
     }
 
     public List<Dream> getDreams(){
-        return this.dreamList;
+        return this.dreams.getDreams();
     }
 
     public void addDream(Dream dream){
-        this.dreamList.add(dream);
+        this.dreams.addDream(dream);
 
     }
     public String toString(){
