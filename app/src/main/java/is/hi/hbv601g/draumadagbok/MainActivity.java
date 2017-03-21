@@ -11,12 +11,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
+    //TODO: layout
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //insert username to UI
         final String mUserName = getIntent().getStringExtra(USER_NAME);
         TextView texti = (TextView) findViewById(R.id.textView);
         String welcomeUser = "Velkominn " + mUserName ;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private static final String USER_NAME = "is.hi.hbv601g.draumadagbok.uname";
     public static Intent nameIntent(Context packageContext, String name){

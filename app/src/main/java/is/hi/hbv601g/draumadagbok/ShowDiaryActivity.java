@@ -12,10 +12,13 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 public class ShowDiaryActivity extends AppCompatActivity {
-    TextView texti;
+
+
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+
+    TextView texti;
     private ShowDiaryManager diaryManager = new ShowDiaryManager();
 
     @Override
@@ -28,7 +31,7 @@ public class ShowDiaryActivity extends AppCompatActivity {
     }
 
     private static final String USER_NAME = "is.hi.hbv601g.draumadagbok.uname";
-
+    //insert data to intent
     public static Intent nameIntent(Context packageContext, String name) {
         Intent i = new Intent(packageContext, ShowDiaryActivity.class);
         i.putExtra(USER_NAME, name);
@@ -36,7 +39,7 @@ public class ShowDiaryActivity extends AppCompatActivity {
     }
 
     private class FetchDreamsTask extends AsyncTask<Void, Void, User> {
-
+        //background task to get dreams from server via ShowDiaryManager
         @Override
         protected User doInBackground(Void... params) {
             Context context = getApplicationContext();
@@ -47,9 +50,10 @@ public class ShowDiaryActivity extends AppCompatActivity {
             return diaryManager.findDreams(userName, userId);
         }
 
+
         @Override
         protected void onPostExecute(User result) {
-
+            //TODO: make a scrollable list of dream titles that connect to specific dreams
             if(result.getId() != -1){
 
                 texti.setText("Fann: " + result.getDreams().toString());//put data into view

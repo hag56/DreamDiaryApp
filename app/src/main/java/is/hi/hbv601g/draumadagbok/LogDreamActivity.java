@@ -7,7 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
+//TODO: Make  a manager who connects to server and send in dream
+//TODO: Make arrangements for Guest dream
 public class LogDreamActivity extends AppCompatActivity {
 
     @Override
@@ -39,5 +40,5 @@ public class LogDreamActivity extends AppCompatActivity {
         return i;
     }
 
-
+    //TODO: Make an async class to send in the dream
 }

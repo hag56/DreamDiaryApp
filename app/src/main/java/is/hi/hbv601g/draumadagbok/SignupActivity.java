@@ -20,7 +20,7 @@ public class SignupActivity extends AppCompatActivity {
         mSignupButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-
+                //TODO: validate info from signup form
 
             }
         });
@@ -31,4 +31,8 @@ public class SignupActivity extends AppCompatActivity {
         i.putExtra(USER_NAME, name);
         return i;
     }
+
+    //TODO: Make async class for network work
+    //TODO: Create Manager class for network work
+    //TODO: OnPostExecute
 }

@@ -9,7 +9,7 @@ import android.widget.TextView;
 import static android.R.attr.name;
 
 public class ShowDreamActivity extends AppCompatActivity {
-
+    //TODO: Connect to list of dreams
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

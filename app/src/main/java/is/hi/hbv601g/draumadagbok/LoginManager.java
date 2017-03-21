@@ -37,6 +37,8 @@ public class LoginManager {
 
 
     public static User loginUser(User postdata){
+
+
         try {
 
             String uri = Uri.parse(serverurl)
@@ -77,6 +79,7 @@ public class LoginManager {
         return postdata;
     }
 
+    //TODO: Make specific ConnectionManager
     // Attempt at using POST instead of GET
     public static User POSTData(String usl, User param){
         Log.i(TAG, "Started");

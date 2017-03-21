@@ -26,12 +26,15 @@ public class LoginActivity extends AppCompatActivity {
         mLoginButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+
+                //TODO: check for empty textboxes
                 EditText texti = (EditText) findViewById(R.id.editText);
                 String nafn = texti.getText().toString();
                 EditText pass = (EditText) findViewById(R.id.editText2);
                 String word = pass.getText().toString();
                 User user = new User();
                 user.setName(nafn);
+                //TODO: encrypt password on app and decrypt on server
                 user.setPassword(word);
                 new FetchUserTask().execute(user);
 
@@ -50,12 +53,14 @@ public class LoginActivity extends AppCompatActivity {
         mSignupButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                //TODO: Make a signupActivity and signupManager
                 Intent i = SignupActivity.nameIntent(LoginActivity.this, "guest");
                 startActivity(i);
             }
         });
     }
 
+    //Async class to get User from Server
     private class FetchUserTask extends AsyncTask<User,Void,User> {
         @Override
         protected User doInBackground(User... params) {
@@ -64,13 +69,17 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(User result) {
-              //Log.i("TAG", );
+            //TODO: reject login if server says so
+
+            //Saving basic user info
             Context context = getApplicationContext();
             SharedPreferences sharedPref = context.getSharedPreferences("info", Context.MODE_PRIVATE);
             sharedPref.edit()
                     .putString("name", result.getName())
                     .putInt("id", result.getId())
                     .apply();
+
+            //Start next activity
             Intent i = MainActivity.nameIntent(LoginActivity.this, result.getName());
             startActivity(i);
         }
