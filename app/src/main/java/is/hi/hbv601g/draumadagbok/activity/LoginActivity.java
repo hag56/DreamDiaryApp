@@ -81,19 +81,25 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(User result) {
-            //TODO: reject login if server says so
+            if (result.getId() == 0) { // ID er 0 ef user er ekki í gagnagrunninum
+                TextView villa = (TextView) findViewById(R.id.textView2);
+                villa.setText("Villa: Notandanafn eða lykilorð er rangt.");
+            }
+            else {
+                //Saving basic user info
+                Context context = getApplicationContext();
+                SharedPreferences sharedPref = context.getSharedPreferences("info", Context.MODE_PRIVATE);
+                sharedPref.edit()
+                        .putString("name", result.getName())
+                        .putInt("id", result.getId())
+                        .apply();
 
-            //Saving basic user info
-            Context context = getApplicationContext();
-            SharedPreferences sharedPref = context.getSharedPreferences("info", Context.MODE_PRIVATE);
-            sharedPref.edit()
-                    .putString("name", result.getName())
-                    .putInt("id", result.getId())
-                    .apply();
+                Log.i("Result", "" + result.getId());
 
-            //Start next activity
-            Intent i = MainActivity.nameIntent(LoginActivity.this, result.getName());
-            startActivity(i);
+                //Start next activity
+                Intent i = MainActivity.nameIntent(LoginActivity.this, result.getName());
+                startActivity(i);
+            }
         }
     }
 }
