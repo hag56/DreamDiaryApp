@@ -6,13 +6,17 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import is.hi.hbv601g.draumadagbok.manager.LoginManager;
 import is.hi.hbv601g.draumadagbok.R;
 import is.hi.hbv601g.draumadagbok.model.User;
+
+import static android.content.ContentValues.TAG;
 
 public class LoginActivity extends AppCompatActivity {
     LoginManager lm = new LoginManager();
@@ -30,16 +34,21 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
 
-                //TODO: check for empty textboxes
                 EditText texti = (EditText) findViewById(R.id.editText);
                 String nafn = texti.getText().toString();
                 EditText pass = (EditText) findViewById(R.id.editText2);
                 String word = pass.getText().toString();
-                User user = new User();
-                user.setName(nafn);
-                //TODO: encrypt password on app and decrypt on server
-                user.setPassword(word);
-                new FetchUserTask().execute(user);
+                TextView villa = (TextView) findViewById(R.id.textView2);
+                if (texti.length() == 0 || pass.length() == 0) {
+                    villa.setText("Villa: Reitir þurfa að vera útfylltir.");
+                }
+                else {
+                    User user = new User();
+                    user.setName(nafn);
+                    //TODO: encrypt password on app and decrypt on server
+                    user.setPassword(word);
+                    new FetchUserTask().execute(user);
+                }
 
 
             }
