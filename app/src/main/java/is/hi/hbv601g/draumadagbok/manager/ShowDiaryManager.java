@@ -1,4 +1,4 @@
-package is.hi.hbv601g.draumadagbok;
+package is.hi.hbv601g.draumadagbok.manager;
 
 import android.net.Uri;
 import android.util.Log;
@@ -6,12 +6,11 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import is.hi.hbv601g.draumadagbok.Dream;
-import is.hi.hbv601g.draumadagbok.User;
-import is.hi.hbv601g.draumadagbok.dreamList;
+import is.hi.hbv601g.draumadagbok.model.Dream;
+import is.hi.hbv601g.draumadagbok.model.User;
 
 import static android.content.ContentValues.TAG;
-import static is.hi.hbv601g.draumadagbok.LoginManager.getUrlString;
+import static is.hi.hbv601g.draumadagbok.manager.LoginManager.getUrlString;
 
 /**
  * Created by Halli on 20.3.2017.

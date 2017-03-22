@@ -1,4 +1,4 @@
-package is.hi.hbv601g.draumadagbok;
+package is.hi.hbv601g.draumadagbok.activity;
 
 
 import android.content.Context;
@@ -7,9 +7,12 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
+
+import is.hi.hbv601g.draumadagbok.R;
+import is.hi.hbv601g.draumadagbok.manager.ShowDiaryManager;
+import is.hi.hbv601g.draumadagbok.model.User;
 
 public class ShowDiaryActivity extends AppCompatActivity {
 

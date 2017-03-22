@@ -1,14 +1,14 @@
-package is.hi.hbv601g.draumadagbok;
+package is.hi.hbv601g.draumadagbok.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import is.hi.hbv601g.draumadagbok.R;
 
 public class MainActivity extends AppCompatActivity {
     //TODO: layout

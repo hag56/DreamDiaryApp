@@ -2,8 +2,9 @@ package is.hi.hbv601g.draumadagbok;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.lang.reflect.Array;
 import java.util.*;
+
+import is.hi.hbv601g.draumadagbok.model.Dream;
 
 /**
  * Created by Halli on 19.3.2017.

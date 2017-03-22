@@ -1,11 +1,11 @@
-package is.hi.hbv601g.draumadagbok;
+package is.hi.hbv601g.draumadagbok.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import is.hi.hbv601g.draumadagbok.dreamList;
+import is.hi.hbv601g.draumadagbok.model.Dream;
 
 /**
  * Created by Halli on 18.3.2017.

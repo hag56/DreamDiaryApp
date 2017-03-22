@@ -1,4 +1,4 @@
-package is.hi.hbv601g.draumadagbok;
+package is.hi.hbv601g.draumadagbok.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import static android.R.attr.name;
+import is.hi.hbv601g.draumadagbok.R;
 
 public class ShowDreamActivity extends AppCompatActivity {
     //TODO: Connect to list of dreams

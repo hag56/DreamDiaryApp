@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="is.hi.hbv601g.draumadagbok.ShowDreamActivity">
+    tools:context="is.hi.hbv601g.draumadagbok.activity.ShowDreamActivity">
 
     <TextView
         android:id="@+id/d_title"
