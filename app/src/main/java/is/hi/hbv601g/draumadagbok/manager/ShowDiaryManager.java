@@ -10,7 +10,8 @@ import is.hi.hbv601g.draumadagbok.model.Dream;
 import is.hi.hbv601g.draumadagbok.model.User;
 
 import static android.content.ContentValues.TAG;
-import static is.hi.hbv601g.draumadagbok.manager.LoginManager.getUrlString;
+import static is.hi.hbv601g.draumadagbok.manager.ConnectionManager.getUrlString;
+
 
 /**
  * Created by Halli on 20.3.2017.
