@@ -81,9 +81,7 @@ public class DiaryFragment extends Fragment {
     private void updateUI() {
 
         User use = (User)getArguments().getSerializable(USER);
-        Log.i(TAG, "DiaryFragment gets: " + use.getDreams().toString());
         List<Dream> dreams = use.getDreams();
-        Log.i(TAG, "Dreams gets: " + dreams.toString());
         mAdapter = new DreamAdapter(dreams);
         mDreamRecyclerView.setAdapter(mAdapter);
     }
