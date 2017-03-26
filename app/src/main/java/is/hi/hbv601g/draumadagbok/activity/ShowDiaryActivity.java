@@ -13,7 +13,7 @@ import is.hi.hbv601g.draumadagbok.fragment.DiaryFragment;
 import is.hi.hbv601g.draumadagbok.fragment.DreamFragment;
 import is.hi.hbv601g.draumadagbok.model.Dream;
 import is.hi.hbv601g.draumadagbok.model.User;
-
+//Main activity
 public  class ShowDiaryActivity extends SingleFragmentActivity
         implements DiaryFragment.Callbacks, DreamFragment.OnDreamFragmentInteractionListener{
 
