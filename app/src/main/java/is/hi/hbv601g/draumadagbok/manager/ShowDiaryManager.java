@@ -6,6 +6,8 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.UUID;
+
 import is.hi.hbv601g.draumadagbok.model.Dream;
 import is.hi.hbv601g.draumadagbok.model.User;
 
@@ -23,6 +25,12 @@ public class ShowDiaryManager {
     public ShowDiaryManager(){
 
     }
+
+    public static Dream getDream(int dreamID){
+        return new Dream();
+    }
+
+
     public User findDreams(String name, int userId){
 
         try {

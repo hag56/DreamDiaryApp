@@ -2,34 +2,39 @@ package is.hi.hbv601g.draumadagbok.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import java.util.UUID;
+
 import is.hi.hbv601g.draumadagbok.R;
+import is.hi.hbv601g.draumadagbok.fragment.DiaryFragment;
+import is.hi.hbv601g.draumadagbok.fragment.DreamFragment;
+import is.hi.hbv601g.draumadagbok.model.Dream;
 
-public class ShowDreamActivity extends AppCompatActivity {
-    //TODO: Connect to list of dreams
+public class ShowDreamActivity extends SingleFragmentActivity
+        implements DreamFragment.OnDreamFragmentInteractionListener{
+
+    private static final String DREAM = "is.hi.hbv601g.draumadagbok.dream";
+    Dream mDream;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_dream);
-
-        String mDreamTitle = getIntent().getStringExtra(DREAM_TITLE); //skiptum út fyrir Draum
-        TextView title = (TextView) findViewById(R.id.d_title);
-        title.setText(mDreamTitle);
-
-        String mDreamContent = getIntent().getStringExtra(DREAM_CONTENT);
-        TextView text = (TextView) findViewById(R.id.d_text);
-        text.setText(mDreamContent);
+    protected Fragment createFragment(){
+        mDream = (Dream) getIntent().getSerializableExtra(DREAM);
+        return DreamFragment.newInstance(mDream);
     }
 
-    private static final String DREAM_TITLE = "is.hi.hbv601g.draumadagbok.dreamtitle";
-    private static final String DREAM_CONTENT = "is.hi.hbv601g.draumadagbok.dreamcontent";
-    public static Intent nameIntent(Context packageContext, String title, String content){
+    @Override
+    public void onDreamFragmentInteraction(Dream dream){
+        mDream = dream;
+
+    }
+
+    public static Intent DreamIntent(Context packageContext, Dream dream){
         Intent i = new Intent(packageContext, ShowDreamActivity.class);
-        i.putExtra(DREAM_TITLE, title);
-        i.putExtra(DREAM_CONTENT, content);
+        i.putExtra(DREAM, dream);
         return i;
     }
 

@@ -2,6 +2,7 @@ package is.hi.hbv601g.draumadagbok.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.io.Serializable;
 import java.util.List;
 
 import is.hi.hbv601g.draumadagbok.dreamList;
@@ -11,7 +12,7 @@ import is.hi.hbv601g.draumadagbok.model.Dream;
  * Created by Halli on 18.3.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class User {
+public class User implements Serializable {
 
     private String name;
     private String password;

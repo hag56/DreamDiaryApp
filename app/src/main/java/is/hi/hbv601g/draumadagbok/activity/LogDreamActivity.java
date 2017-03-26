@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import is.hi.hbv601g.draumadagbok.R;
+import is.hi.hbv601g.draumadagbok.model.User;
 
 //TODO: Make  a manager who connects to server and send in dream
 //TODO: Make arrangements for Guest dream
@@ -30,16 +31,16 @@ public class LogDreamActivity extends AppCompatActivity {
                 EditText texti = (EditText) findViewById(R.id.draumtexti);
                 String innihald = texti.getText().toString();
 
-                Intent i = ShowDreamActivity.nameIntent(LogDreamActivity.this, title, innihald);
-                startActivity(i);
+/*                Intent i = ShowDreamActivity.DreamIntent(LogDreamActivity.this, title, innihald);
+                startActivity(i);*/
             }
         });
     }
 
-    private static final String USER_NAME = "is.hi.hbv601g.draumadagbok.uname";
-    public static Intent nameIntent(Context packageContext, String name){
+    private static final String USER = "is.hi.hbv601g.draumadagbok.user";
+    public static Intent nameIntent(Context packageContext, Bundle bndle){
         Intent i = new Intent(packageContext, LogDreamActivity.class);
-        i.putExtra(USER_NAME, name);
+        i.putExtra(USER, bndle.getSerializable(USER));
         return i;
     }
 

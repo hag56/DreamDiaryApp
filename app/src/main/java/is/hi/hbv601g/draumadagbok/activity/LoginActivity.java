@@ -19,6 +19,7 @@ import is.hi.hbv601g.draumadagbok.model.User;
 import static android.content.ContentValues.TAG;
 
 public class LoginActivity extends AppCompatActivity {
+    private static final String USER = "is.hi.hbv601g.draumadagbok.user";
     LoginManager lm = new LoginManager();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +58,9 @@ public class LoginActivity extends AppCompatActivity {
         mSkipButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent i = LogDreamActivity.nameIntent(LoginActivity.this, "guest");
+                Bundle b = new Bundle();
+                b.putSerializable(USER, new User());
+                Intent i = LogDreamActivity.nameIntent(LoginActivity.this, b);
                 startActivity(i);
             }
         });
@@ -87,17 +90,18 @@ public class LoginActivity extends AppCompatActivity {
             }
             else {
                 //Saving basic user info
-                Context context = getApplicationContext();
+/*                Context context = getApplicationContext();
                 SharedPreferences sharedPref = context.getSharedPreferences("info", Context.MODE_PRIVATE);
                 sharedPref.edit()
                         .putString("name", result.getName())
                         .putInt("id", result.getId())
                         .apply();
-
-                Log.i("Result", "" + result.getId());
-
+*/
+                Log.i("Result", "" + result.toString());
+                Bundle args = new Bundle();
+                args.putSerializable(USER, result);
                 //Start next activity
-                Intent i = MainActivity.nameIntent(LoginActivity.this, result.getName());
+                Intent i = MainActivity.nameIntent(LoginActivity.this, args);
                 startActivity(i);
             }
         }

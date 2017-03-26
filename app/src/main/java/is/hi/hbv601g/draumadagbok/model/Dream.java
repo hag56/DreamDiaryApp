@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
 import java.util.*;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
@@ -13,7 +14,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
  * Created by Halli on 18.3.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Dream {
+public class Dream implements Serializable {
     private String name; //vantar getset
     private int userId;
     private String content;

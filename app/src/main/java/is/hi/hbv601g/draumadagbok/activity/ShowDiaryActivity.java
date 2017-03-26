@@ -5,65 +5,55 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.support.annotation.LayoutRes;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.TextView;
+import static android.content.ContentValues.TAG;
 
 import is.hi.hbv601g.draumadagbok.R;
+import is.hi.hbv601g.draumadagbok.fragment.DiaryFragment;
+import is.hi.hbv601g.draumadagbok.fragment.DreamFragment;
 import is.hi.hbv601g.draumadagbok.manager.ShowDiaryManager;
+import is.hi.hbv601g.draumadagbok.model.Dream;
 import is.hi.hbv601g.draumadagbok.model.User;
 
-public class ShowDiaryActivity extends AppCompatActivity {
+public  class ShowDiaryActivity extends SingleFragmentActivity
+        implements DiaryFragment.Callbacks{
 
 
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-
-    TextView texti;
-    private ShowDiaryManager diaryManager = new ShowDiaryManager();
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_diary );
-        new FetchDreamsTask().execute();
-        texti = (TextView) findViewById(R.id.textView8);
-
+    public Fragment createFragment(){
+        User user = (User) getIntent().getSerializableExtra(USER);
+        Log.i(TAG, user.toString());
+        return DiaryFragment.newInstance(user);
     }
 
-    private static final String USER_NAME = "is.hi.hbv601g.draumadagbok.uname";
+    @Override
+    public void onDreamSelected(Dream dream){
+        if (findViewById(R.id.detail_fragment_container) == null) {
+            Intent intent = ShowDreamActivity.DreamIntent(this, dream);
+            startActivity(intent);
+        } else {
+            Fragment newDetail = DreamFragment.newInstance(dream);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.detail_fragment_container, newDetail)
+                    .commit();
+        }
+    }
+
+
+    private static final String USER = "is.hi.hbv601g.draumadagbok.user";
     //insert data to intent
-    public static Intent nameIntent(Context packageContext, String name) {
+    public static Intent nameIntent(Context packageContext, Bundle bndle) {
+
         Intent i = new Intent(packageContext, ShowDiaryActivity.class);
-        i.putExtra(USER_NAME, name);
+        i.putExtra(USER, bndle.getSerializable(USER));
         return i;
     }
 
-    private class FetchDreamsTask extends AsyncTask<Void, Void, User> {
-        //background task to get dreams from server via ShowDiaryManager
-        @Override
-        protected User doInBackground(Void... params) {
-            Context context = getApplicationContext();
-            SharedPreferences sharedPref = context.getSharedPreferences("info", Context.MODE_PRIVATE);
-            String userName = sharedPref.getString("name", "Looser");
-            int userId = sharedPref.getInt("id",-1);
-
-            return diaryManager.findDreams(userName, userId);
-        }
-
-
-        @Override
-        protected void onPostExecute(User result) {
-            //TODO: make a scrollable list of dream titles that connect to specific dreams
-            if(result.getId() != -1){
-
-                texti.setText("Fann: " + result.getDreams().toString());//put data into view
-
-            }
-
-        }
-    }
 }
 

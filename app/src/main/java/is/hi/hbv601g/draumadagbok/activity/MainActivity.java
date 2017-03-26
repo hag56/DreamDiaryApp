@@ -8,19 +8,25 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.Serializable;
+
 import is.hi.hbv601g.draumadagbok.R;
+import is.hi.hbv601g.draumadagbok.model.User;
 
 public class MainActivity extends AppCompatActivity {
     //TODO: layout
+    private static final String USER = "is.hi.hbv601g.draumadagbok.user";
+    User mUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         //insert username to UI
-        final String mUserName = getIntent().getStringExtra(USER_NAME);
+        mUser = (User) getIntent().getSerializableExtra(USER);
+
         TextView texti = (TextView) findViewById(R.id.textView);
-        String welcomeUser = "Velkominn " + mUserName ;
+        String welcomeUser = "Velkominn " + mUser.getName() ;
         texti.setText(welcomeUser);
 
         Button mNewDreamButton = (Button) findViewById(R.id.dream_button);
@@ -29,8 +35,9 @@ public class MainActivity extends AppCompatActivity {
         mNewDreamButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-
-                Intent i = LogDreamActivity.nameIntent(MainActivity.this, mUserName);
+                Bundle args = new Bundle();
+                args.putSerializable(USER, mUser);
+                Intent i = LogDreamActivity.nameIntent(MainActivity.this, args);
                 startActivity(i);
             }
         });
@@ -39,18 +46,19 @@ public class MainActivity extends AppCompatActivity {
         mOldDreamsButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-
-                Intent i = ShowDiaryActivity.nameIntent(MainActivity.this, mUserName);
+                Bundle args = new Bundle();
+                args.putSerializable(USER, mUser);
+                Intent i = ShowDiaryActivity.nameIntent(MainActivity.this, args);
                 startActivity(i);
             }
         });
     }
 
 
-    private static final String USER_NAME = "is.hi.hbv601g.draumadagbok.uname";
-    public static Intent nameIntent(Context packageContext, String name){
+
+    public static Intent nameIntent(Context packageContext, Bundle bndle){
         Intent i = new Intent(packageContext, MainActivity.class);
-        i.putExtra(USER_NAME, name);
+        i.putExtra(USER,bndle.getSerializable(USER));
         return i;
     }
 
