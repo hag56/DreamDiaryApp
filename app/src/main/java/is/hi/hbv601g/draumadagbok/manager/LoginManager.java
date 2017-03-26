@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
@@ -56,7 +58,17 @@ public class LoginManager {
                 dream.setName(jsDream.getString("name"));
                 dream.setId(jsDream.getInt("id"));
                 dream.setUserId(jsDream.getInt("userId"));
-                //dream.setDate((Date)jsDream.getJSONObject("date")); VESEN!!!!!
+
+                JSONObject jsdate = jsDream.getJSONObject("date");
+                int yr = jsdate.getInt("year");
+                int day = jsdate.getInt("dayOfMonth");
+                int mnth = jsdate.getInt("monthValue");
+                String sd = String.valueOf(yr) + "-"  + String.valueOf(mnth)+ "-" + String.valueOf(day);
+                Calendar cal = Calendar.getInstance();
+                cal.set(yr,mnth,day);
+                Date date = cal.getTime();
+                dream.setDate(date);
+
                 dream.setContent(jsDream.getString("content"));
                 dream.setInterpretation(jsDream.getString("interpretation"));
 

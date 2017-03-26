@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,9 +54,20 @@ public class DreamFragment extends Fragment {
 
         if (getArguments() != null) {
             mDream = (Dream) getArguments().getSerializable(DREAM);
-            title.setText(mDream.getName());
-            content.setText(mDream.getContent());
-            interp.setText(mDream.getInterpretation());
+            if(mDream.getName().contentEquals("null")){
+                title.setText("Titil vantar");
+
+                content.setText(mDream.getContent());
+                interp.setText(mDream.getInterpretation());
+            }
+            else{
+                title.setText(mDream.getName());
+                content.setText(mDream.getContent());
+                interp.setText(mDream.getInterpretation());
+            }
+            title.setGravity(Gravity.CENTER);
+            content.setGravity(Gravity.CENTER);
+            interp.setGravity(Gravity.CENTER);
         }
 
 

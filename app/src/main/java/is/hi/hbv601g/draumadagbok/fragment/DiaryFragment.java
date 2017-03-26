@@ -98,9 +98,14 @@ public class DiaryFragment extends Fragment {
 
         public void bind(Dream Dream) {
             mDream = Dream;
-            mTitleTextView.setText("Titill: " + mDream.getName() );
-            mDateTextView.setText("hér á að koma dagsetning");
-            //mDateTextView.setText(mDream.getDate().toString());
+            if (mDream.getName().contentEquals("null")){
+                mTitleTextView.setText("Enginn titill" );
+                mDateTextView.setText(mDream.getDate().toString());
+            }
+            else{
+                mTitleTextView.setText( mDream.getName() );
+                mDateTextView.setText(mDream.getDate().toString());
+            }
         }
 
         @Override
