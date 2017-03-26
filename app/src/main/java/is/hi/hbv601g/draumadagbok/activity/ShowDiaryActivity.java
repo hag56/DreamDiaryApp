@@ -3,27 +3,19 @@ package is.hi.hbv601g.draumadagbok.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.AsyncTask;
-import android.support.annotation.LayoutRes;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.TextView;
 import static android.content.ContentValues.TAG;
 
 import is.hi.hbv601g.draumadagbok.R;
 import is.hi.hbv601g.draumadagbok.fragment.DiaryFragment;
 import is.hi.hbv601g.draumadagbok.fragment.DreamFragment;
-import is.hi.hbv601g.draumadagbok.manager.ShowDiaryManager;
 import is.hi.hbv601g.draumadagbok.model.Dream;
 import is.hi.hbv601g.draumadagbok.model.User;
 
 public  class ShowDiaryActivity extends SingleFragmentActivity
-        implements DiaryFragment.Callbacks{
+        implements DiaryFragment.Callbacks, DreamFragment.OnDreamFragmentInteractionListener{
 
 
     public Fragment createFragment(){
@@ -32,6 +24,7 @@ public  class ShowDiaryActivity extends SingleFragmentActivity
         return DiaryFragment.newInstance(user);
     }
 
+    //listener for diary
     @Override
     public void onDreamSelected(Dream dream){
         if (findViewById(R.id.detail_fragment_container) == null) {
@@ -45,9 +38,12 @@ public  class ShowDiaryActivity extends SingleFragmentActivity
         }
     }
 
+    //listener for dream
+    @Override
+    public void onDreamFragmentInteraction(Dream dream){}
 
     private static final String USER = "is.hi.hbv601g.draumadagbok.user";
-    //insert data to intent
+    //to be able to receive data via intent
     public static Intent nameIntent(Context packageContext, Bundle bndle) {
 
         Intent i = new Intent(packageContext, ShowDiaryActivity.class);

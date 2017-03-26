@@ -53,7 +53,6 @@ public class DreamFragment extends Fragment {
 
         if (getArguments() != null) {
             mDream = (Dream) getArguments().getSerializable(DREAM);
-            Log.i(TAG, "DreamFragment gets: " + mDream.toString());
             title.setText(mDream.getName());
             content.setText(mDream.getContent());
             interp.setText(mDream.getInterpretation());

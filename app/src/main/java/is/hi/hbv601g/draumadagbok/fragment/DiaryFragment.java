@@ -25,20 +25,17 @@ import is.hi.hbv601g.draumadagbok.model.User;
 import static android.content.ContentValues.TAG;
 import static is.hi.hbv601g.draumadagbok.R.id.dream_recycler_view;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
 
- * to handle interaction events.
- * Use the {@link DiaryFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class DiaryFragment extends Fragment {
     private static final String USER = "is.hi.hbv601g.draumadagbok.user";
     private RecyclerView mDreamRecyclerView;
     private DreamAdapter mAdapter;
-    private Callbacks mListener;
 
+    //Listeners for getting data back to activity
+    private Callbacks mListener;
+    public interface Callbacks {
+        void onDreamSelected(Dream dream);
+    }
     public DiaryFragment() {
         // Required empty public constructor
     }
@@ -74,12 +71,9 @@ public class DiaryFragment extends Fragment {
         mListener = null;
     }
 
-    public interface Callbacks {
-        void onDreamSelected(Dream dream);
-    }
+
 
     private void updateUI() {
-
         User use = (User)getArguments().getSerializable(USER);
         List<Dream> dreams = use.getDreams();
         mAdapter = new DreamAdapter(dreams);
@@ -104,7 +98,8 @@ public class DiaryFragment extends Fragment {
 
         public void bind(Dream Dream) {
             mDream = Dream;
-            mTitleTextView.setText(mDream.getName() );
+            mTitleTextView.setText("Titill: " + mDream.getName() );
+            mDateTextView.setText("hér á að koma dagsetning");
             //mDateTextView.setText(mDream.getDate().toString());
         }
 

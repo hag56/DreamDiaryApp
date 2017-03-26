@@ -2,6 +2,7 @@ package is.hi.hbv601g.draumadagbok.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.LayoutRes;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +17,12 @@ import is.hi.hbv601g.draumadagbok.model.Dream;
 
 public class ShowDreamActivity extends SingleFragmentActivity
         implements DreamFragment.OnDreamFragmentInteractionListener{
+/*
+    @LayoutRes
+    protected int getLayoutResId() {
+        return R.layout.fragment_dream;
+    }
+*/
 
     private static final String DREAM = "is.hi.hbv601g.draumadagbok.dream";
     Dream mDream;
