@@ -17,7 +17,8 @@ import is.hi.hbv601g.draumadagbok.model.User;
 public  class ShowDiaryActivity extends SingleFragmentActivity
         implements DiaryFragment.Callbacks, DreamFragment.OnDreamFragmentInteractionListener{
 
-
+    //overwritten creation method
+    @Override
     public Fragment createFragment(){
         User user = (User) getIntent().getSerializableExtra(USER);
         Log.i(TAG, user.toString());

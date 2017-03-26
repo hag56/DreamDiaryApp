@@ -19,6 +19,8 @@ import static is.hi.hbv601g.draumadagbok.manager.ConnectionManager.getUrlString;
  * Created by Halli on 20.3.2017.
  */
 
+//depreciated / obsolete
+
 public class ShowDiaryManager {
     private static final String serverurl = "http://10.0.2.2:8080/dreams";
 
@@ -29,6 +31,7 @@ public class ShowDiaryManager {
     public static Dream getDream(int dreamID){
         return new Dream();
     }
+
 
 
     public User findDreams(String name, int userId){

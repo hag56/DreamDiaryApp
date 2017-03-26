@@ -31,15 +31,16 @@ public class DiaryFragment extends Fragment {
     private RecyclerView mDreamRecyclerView;
     private DreamAdapter mAdapter;
 
-    //Listeners for getting data back to activity
+    //Listener for getting data back to activity
     private Callbacks mListener;
     public interface Callbacks {
         void onDreamSelected(Dream dream);
     }
+    // Required empty public constructor
     public DiaryFragment() {
-        // Required empty public constructor
     }
 
+    //for creation
     public static DiaryFragment newInstance(User user) {
         DiaryFragment fragment = new DiaryFragment();
         Bundle args = new Bundle();
@@ -47,6 +48,7 @@ public class DiaryFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,7 +74,7 @@ public class DiaryFragment extends Fragment {
     }
 
 
-
+    //for changing UI according to now
     private void updateUI() {
         User use = (User)getArguments().getSerializable(USER);
         List<Dream> dreams = use.getDreams();
@@ -80,6 +82,7 @@ public class DiaryFragment extends Fragment {
         mDreamRecyclerView.setAdapter(mAdapter);
     }
 
+    //Helper class for displaying scrollable list
     private class DreamHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener {
 
@@ -117,6 +120,7 @@ public class DiaryFragment extends Fragment {
         }
     }
 
+    //Helper adapter class for displaying list of dreams
     private class DreamAdapter extends RecyclerView.Adapter<DreamHolder> {
 
         private List<Dream> mDreams;

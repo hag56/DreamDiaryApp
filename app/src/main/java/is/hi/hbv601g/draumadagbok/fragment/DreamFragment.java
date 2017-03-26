@@ -52,6 +52,7 @@ public class DreamFragment extends Fragment {
         content = (TextView)v.findViewById(R.id.dcontent);
         interp = (TextView)v.findViewById(R.id.dinterp);
 
+        //insert to UI info on dream
         if (getArguments() != null) {
             mDream = (Dream) getArguments().getSerializable(DREAM);
             if(mDream.getName().contentEquals("null")){
@@ -65,6 +66,8 @@ public class DreamFragment extends Fragment {
                 content.setText(mDream.getContent());
                 interp.setText(mDream.getInterpretation());
             }
+
+            //layout settings
             title.setGravity(Gravity.CENTER);
             content.setGravity(Gravity.CENTER);
             interp.setGravity(Gravity.CENTER);
@@ -102,6 +105,8 @@ public class DreamFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
+
+    //interface for data transfer back to activity
     public interface OnDreamFragmentInteractionListener {
         void onDreamFragmentInteraction(Dream dream);
     }

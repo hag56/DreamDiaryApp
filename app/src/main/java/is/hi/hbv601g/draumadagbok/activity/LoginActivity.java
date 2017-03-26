@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-
+        //event listeners
         mSkipButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){

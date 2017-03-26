@@ -22,16 +22,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //insert username to UI
+        //get user from intent
         mUser = (User) getIntent().getSerializableExtra(USER);
-
+        //display info on user
         TextView texti = (TextView) findViewById(R.id.textView);
         String welcomeUser = "Velkominn " + mUser.getName() ;
         texti.setText(welcomeUser);
 
+
         Button mNewDreamButton = (Button) findViewById(R.id.dream_button);
         Button mOldDreamsButton = (Button) findViewById(R.id.old_button);
 
+        //event listeners
         mNewDreamButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -41,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
 
         mOldDreamsButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    //for data transfer
     public static Intent nameIntent(Context packageContext, Bundle bndle){
         Intent i = new Intent(packageContext, MainActivity.class);
         i.putExtra(USER,bndle.getSerializable(USER));

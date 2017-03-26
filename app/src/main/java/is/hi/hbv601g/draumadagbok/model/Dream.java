@@ -15,7 +15,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Dream implements Serializable {
-    private String name; //vantar getset
+    private String name;
     private int userId;
     private String content;
     private int id;

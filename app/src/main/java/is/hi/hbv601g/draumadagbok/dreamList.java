@@ -10,6 +10,7 @@ import is.hi.hbv601g.draumadagbok.model.Dream;
 /**
  * Created by Halli on 19.3.2017.
  */
+//bean class, intended for POST operations
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class dreamList implements Serializable{
 

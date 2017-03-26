@@ -27,6 +27,7 @@ import static is.hi.hbv601g.draumadagbok.manager.ConnectionManager.serverurl;
  * Created by Halli on 18.3.2017.
  */
 
+//Manager to handle logic on login
 public class LoginManager {
 
 
@@ -37,9 +38,8 @@ public class LoginManager {
 
     public static User loginUser(User postdata){
 
-
         try {
-
+            //build query
             String uri = Uri.parse(serverurl)
                     .buildUpon()
                     .appendQueryParameter("name", postdata.getName())
@@ -48,6 +48,7 @@ public class LoginManager {
             String res = getUrlString(uri);
             Log.i(TAG, "Received: " + res);
 
+            //parse response
             JSONObject jsonob = new JSONObject(res);
             User user = new User(jsonob.getInt("id"),jsonob.getString("name"),"");
             JSONArray jsonA = jsonob.getJSONArray("dreams");

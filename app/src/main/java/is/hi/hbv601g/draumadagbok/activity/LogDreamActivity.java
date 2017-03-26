@@ -14,6 +14,7 @@ import is.hi.hbv601g.draumadagbok.model.User;
 //TODO: Make  a manager who connects to server and send in dream
 //TODO: Make arrangements for Guest dream
 public class LogDreamActivity extends AppCompatActivity {
+    private static final String USER = "is.hi.hbv601g.draumadagbok.user";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +37,7 @@ public class LogDreamActivity extends AppCompatActivity {
             }
         });
     }
-
-    private static final String USER = "is.hi.hbv601g.draumadagbok.user";
+    //for data transfer
     public static Intent nameIntent(Context packageContext, Bundle bndle){
         Intent i = new Intent(packageContext, LogDreamActivity.class);
         i.putExtra(USER, bndle.getSerializable(USER));
