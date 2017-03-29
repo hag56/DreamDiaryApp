@@ -2,17 +2,21 @@ package is.hi.hbv601g.draumadagbok.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import is.hi.hbv601g.draumadagbok.R;
+import is.hi.hbv601g.draumadagbok.model.User;
 
 public class SignupActivity extends AppCompatActivity {
-
+    //SignupManager sm = new SignupManager();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,39 +28,21 @@ public class SignupActivity extends AppCompatActivity {
         mSignupButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                String usrName   = ((EditText) findViewById(R.id.userName)).getText().toString();
+                //TODO: validate info from signup form
+                //EditText texti = (EditText) findViewById(R.id.editText);
+                EditText username = (EditText) findViewById(R.id.editText7);
+                EditText pass = (EditText) findViewById(R.id.editText4);
+                EditText passconfirm = (EditText) findViewById(R.id.editText5);
+                TextView villa = (TextView) findViewById(R.id.textView4);
 
-                boolean nameTest = false;
-                if(usrName.matches("^([a-zA-Z0-9_\\-])+$"))
-                    nameTest = true;
-
-                String password1 = ((EditText) findViewById(R.id.password1)).getText().toString();
-                String password2 = ((EditText) findViewById(R.id.password2)).getText().toString();
-                String email     = ((EditText) findViewById(R.id.email)).getText().toString();
-
-                boolean emailTest = false;
-                if(email.matches("^([a-zA-Z0-9_\\-])+\\@([a-zA-Z0-9_\\-])+\\.+([a-z])+$"))
-                    emailTest = true;
-
-
-                TextView villa = (TextView) findViewById(R.id.errorGluggi);
-                if(usrName.length() == 0 || email.length() == 0 || password1.length() == 0) {
-                    villa.setText("Villa: Allir reitir þurfa að vera útfylltir.");
-                } else if(!nameTest){
-                    villa.setText("Villa: notenda-nafn ekki á réttu formi");
-                /*
-                }else if(TODO: test hvort að notandanafn og/eða email sé frátekið){
-                    villa.setText("Villa: frátekið stuff");
-                */
-                }else if(!password1.equals(password2)){
-                    villa.setText("Villa: Lykilorðin stemma ekki ");
-                } else if(password1.length() < 4){
-                    villa.setText("Villa: Lykilorð ekki nógu langt");
-                } else if(!emailTest){
-                    villa.setText("Villa: email ekki á réttu formi");
-                } else {
-                    villa.setText("stuff works!");
-                    //TODO: registera user hér
+                if (pass != passconfirm) {
+                    villa.setText("Villa: Lykilorð er ekki það sama í báðum reitum.");
+                }
+                else {
+                    User user = new User();
+                    user.setName(username.getText().toString());
+                    user.setPassword(pass.getText().toString());
+                    new InsertUserTask().execute(user);
                 }
             }
         });
@@ -71,4 +57,33 @@ public class SignupActivity extends AppCompatActivity {
     //TODO: Make async class for network work
     //TODO: Create Manager class for network work
     //TODO: OnPostExecute
+    private class InsertUserTask extends AsyncTask<User,Void,User> {
+        @Override
+        protected User doInBackground(User... params) {
+            return sm.loginUser(params[0]);
+        }
+
+        @Override
+        protected void onPostExecute(User result) {
+            if (result.getId() == 0) { // ID er 0 ef user er ekki í gagnagrunninum
+                TextView villa = (TextView) findViewById(R.id.textView2);
+                villa.setText("Villa: Notandanafn eða lykilorð er rangt.");
+            }
+            else {
+                //Saving basic user info
+                Context context = getApplicationContext();
+                SharedPreferences sharedPref = context.getSharedPreferences("info", Context.MODE_PRIVATE);
+                sharedPref.edit()
+                        .putString("name", result.getName())
+                        .putInt("id", result.getId())
+                        .apply();
+
+                Log.i("Result", "" + result.getId());
+
+                //Start next activity
+                Intent i = MainActivity.nameIntent(LoginActivity.this, result.getName());
+                startActivity(i);
+            }
+        }
+    }
 }
