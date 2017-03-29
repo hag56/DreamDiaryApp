@@ -6,11 +6,14 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+//import org.springframework.util.support.Base64;
 
 import is.hi.hbv601g.draumadagbok.manager.LoginManager;
 import is.hi.hbv601g.draumadagbok.R;
@@ -46,7 +49,8 @@ public class LoginActivity extends AppCompatActivity {
                 else {
                     User user = new User();
                     user.setName(nafn);
-                    //TODO: encrypt password on app and decrypt on server
+                    word = stringEncrypt(word);
+
                     user.setPassword(word);
                     new FetchUserTask().execute(user);
                 }
@@ -73,6 +77,23 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+
+    protected String stringEncrypt(String pass) {
+        String bytesEncoded = Base64.encodeToString(pass.getBytes(), 0);
+        String reverse = new StringBuilder(bytesEncoded).reverse().toString();
+        reverse = reverse + "HenryErBestur";
+        String bytesEncoded2 = Base64.encodeToString(reverse.getBytes(), 0);
+        return bytesEncoded2;
+    }
+
+    protected String stringDecrypt(String secret) {
+        byte[] valueDecoded= Base64.decode(secret.getBytes(), 0);
+        String pass = new String(valueDecoded);
+        pass = pass.substring(0,(pass.length() - 13));
+        String reverse = new StringBuilder(pass).reverse().toString();
+        byte[] valueDecoded2= Base64.decode(reverse.getBytes(), 0);
+        return new String(valueDecoded2);
     }
 
     //Async class to get User from Server
