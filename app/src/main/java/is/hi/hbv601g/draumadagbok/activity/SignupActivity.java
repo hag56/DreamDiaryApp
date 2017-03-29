@@ -14,9 +14,11 @@ import android.widget.TextView;
 
 import is.hi.hbv601g.draumadagbok.R;
 import is.hi.hbv601g.draumadagbok.model.User;
+import is.hi.hbv601g.draumadagbok.manager.SignupManager;
 
 public class SignupActivity extends AppCompatActivity {
-    //SignupManager sm = new SignupManager();
+    private static final String USER = "is.hi.hbv601g.draumadagbok.user";
+    SignupManager sm = new SignupManager();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,13 +31,17 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 //TODO: validate info from signup form
-                //EditText texti = (EditText) findViewById(R.id.editText);
-                EditText username = (EditText) findViewById(R.id.editText7);
-                EditText pass = (EditText) findViewById(R.id.editText4);
-                EditText passconfirm = (EditText) findViewById(R.id.editText5);
-                TextView villa = (TextView) findViewById(R.id.textView4);
+                EditText username = (EditText) findViewById(R.id.userName);
+                EditText pass = (EditText) findViewById(R.id.password1);
+                EditText passconfirm = (EditText) findViewById(R.id.password2);
+                String p1 = pass.getText().toString();
+                String p2 = passconfirm.getText().toString();
+                TextView villa = (TextView) findViewById(R.id.errorGluggi);
 
-                if (pass != passconfirm) {
+                Log.i("Bleh", p1);
+                Log.i("Bleh", p2);
+
+                if (!p1.equals(p2)) {
                     villa.setText("Villa: Lykilorð er ekki það sama í báðum reitum.");
                 }
                 else {
@@ -60,16 +66,18 @@ public class SignupActivity extends AppCompatActivity {
     private class InsertUserTask extends AsyncTask<User,Void,User> {
         @Override
         protected User doInBackground(User... params) {
-            return sm.loginUser(params[0]);
+            return sm.createUser(params[0]);
         }
 
         @Override
         protected void onPostExecute(User result) {
-            if (result.getId() == 0) { // ID er 0 ef user er ekki í gagnagrunninum
-                TextView villa = (TextView) findViewById(R.id.textView2);
-                villa.setText("Villa: Notandanafn eða lykilorð er rangt.");
+            if (result.getId() == 0) { // ID er 0 ef user er til
+                TextView villa = (TextView) findViewById(R.id.errorGluggi);
+                villa.setText("Villa: Notandi er þegar til með þessu notendanafni.");
             }
             else {
+
+                /*
                 //Saving basic user info
                 Context context = getApplicationContext();
                 SharedPreferences sharedPref = context.getSharedPreferences("info", Context.MODE_PRIVATE);
@@ -79,9 +87,13 @@ public class SignupActivity extends AppCompatActivity {
                         .apply();
 
                 Log.i("Result", "" + result.getId());
+                */
+
+                Bundle bndl = new Bundle();
+                bndl.putSerializable(USER, result);
 
                 //Start next activity
-                Intent i = MainActivity.nameIntent(LoginActivity.this, result.getName());
+                Intent i = MainActivity.nameIntent(SignupActivity.this, bndl);
                 startActivity(i);
             }
         }

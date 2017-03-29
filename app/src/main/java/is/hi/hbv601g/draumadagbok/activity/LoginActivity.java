@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                 else {
                     User user = new User();
                     user.setName(nafn);
-                    word = stringEncrypt(word);
+                    //word = stringEncrypt(word);
 
                     user.setPassword(word);
                     new FetchUserTask().execute(user);
