@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/signup_bg"
+    android:padding="4dp"
     tools:context="is.hi.hbv601g.draumadagbok.activity.SignupActivity">
 
     <LinearLayout
