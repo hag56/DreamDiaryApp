@@ -1,13 +1,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/signup_bg"
     android:orientation="vertical"
-    android:layout_width="match_parent" android:layout_height="match_parent"
     android:weightSum="1">
 
     <TextView
         android:id="@+id/dtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:layout_weight="0.0667"
+        android:background="#99ffffff"
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
@@ -15,7 +19,9 @@
         android:id="@+id/dcontent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:layout_weight="0.3333"
+        android:background="#99ffffff"
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
@@ -23,7 +29,9 @@
         android:id="@+id/dinterp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:layout_weight="0.6"
+        android:background="#99ffffff"
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 </LinearLayout>
