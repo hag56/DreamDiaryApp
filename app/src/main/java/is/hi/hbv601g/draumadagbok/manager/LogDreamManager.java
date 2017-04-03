@@ -36,42 +36,25 @@ public class LogDreamManager {
 
     public static Dream createDream(Dream postdata){
 
-        Dream dream = new Dream();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(postdata.getDate());
+
         try {
             String uri = Uri.parse(serverurl)
                     .buildUpon()
                     .appendQueryParameter("userId", String.valueOf(postdata.getUserId()))
                     .appendQueryParameter("title", postdata.getName())
                     .appendQueryParameter("content", postdata.getContent())
-                    .appendQueryParameter("year", String.valueOf(postdata.getDate().getYear()))
-                    .appendQueryParameter("month", String.valueOf(postdata.getDate().getMonth()))
-                    .appendQueryParameter("day", String.valueOf(postdata.getDate().getDay()))
+                    .appendQueryParameter("year", String.valueOf(cal.YEAR))
+                    .appendQueryParameter("month", String.valueOf(cal.MONTH))
+                    .appendQueryParameter("day", String.valueOf(cal.DAY_OF_MONTH))
                     .build().toString();
             String res = getUrlString(uri);
-            Log.i(TAG, "Received: " + res);
+
 
             JSONObject jsonob = new JSONObject(res);
-            dream.setName(jsonob.getString("name"));
-            dream.setUserId(jsonob.getInt("userId"));
-            dream.setContent(jsonob.getString("content"));
-            dream.setId(jsonob.getInt("id"));
-            dream.setInterpretation(jsonob.getString("interpretation"));
-            Log.i("Interp:", jsonob.getString("interpretation"));
-            JSONObject jsdate = jsonob.getJSONObject("date");
-            int yr = jsdate.getInt("year");
-            int day = jsdate.getInt("dayOfMonth");
-            int mnth = jsdate.getInt("monthValue");
-            String sd = String.valueOf(yr) + "-"  + String.valueOf(mnth)+ "-" + String.valueOf(day);
-            Calendar cal = Calendar.getInstance();
-            cal.set(yr,mnth,day);
-            Date date = cal.getTime();
+            postdata.setInterpretation(jsonob.getString("interpretation"));
 
-            dream.setDate(date);
-
-            return dream;
-
-           //User res = POSTData(serverurl, postdata);
-            //return res;
         }
         catch(Exception e){
             e.printStackTrace();

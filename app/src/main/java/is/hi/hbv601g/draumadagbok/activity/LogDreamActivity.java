@@ -15,6 +15,7 @@ import is.hi.hbv601g.draumadagbok.model.Dream;
 import is.hi.hbv601g.draumadagbok.manager.LogDreamManager;
 import is.hi.hbv601g.draumadagbok.model.User;
 
+import java.util.Calendar;
 import java.util.Date;
 
 //TODO: Make  a manager who connects to server and send in dream
@@ -52,7 +53,8 @@ public class LogDreamActivity extends AppCompatActivity {
                     Dream dream = new Dream();
                     dream.setName(title);
                     dream.setContent(innihald);
-                    dream.setDate(new Date());
+                    Calendar cal = Calendar.getInstance();
+                    dream.setDate(cal.getTime());
                     dream.setUserId(mUser.getId());
                     // meira?
                     new InsertDreamTask().execute(dream);
