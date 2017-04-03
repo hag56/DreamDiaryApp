@@ -51,6 +51,7 @@ public class LogDreamActivity extends AppCompatActivity {
                     dream.setName(title);
                     dream.setContent(innihald);
                     dream.setDate(new Date());
+                    dream.setUserId(mUser.getId());
                     // meira?
                     new InsertDreamTask().execute(dream);
                 }
