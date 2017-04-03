@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +32,7 @@ public class LogDreamActivity extends AppCompatActivity {
         setContentView(R.layout.activity_log_dream);
 
         mUser = (User) getIntent().getSerializableExtra(USER);
+        Log.i("User", mUser.toString());
 
         Button mLogDreamButton = (Button)findViewById(R.id.submit_dream);
         mLogDreamButton.setOnClickListener(new View.OnClickListener(){
@@ -38,9 +40,9 @@ public class LogDreamActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
 
-                EditText titill = (EditText) findViewById(R.id.draumtitill);
+                EditText titill = (EditText) findViewById(R.id.draumtexti);
                 String title = titill.getText().toString();
-                EditText texti = (EditText) findViewById(R.id.draumtexti);
+                EditText texti = (EditText) findViewById(R.id.draumtitill);
                 String innihald = texti.getText().toString();
 
                 if (title.length() == 0 || innihald.length() == 0) {
@@ -66,7 +68,7 @@ public class LogDreamActivity extends AppCompatActivity {
     //for data transfer
     public static Intent nameIntent(Context packageContext, Bundle bndle){
         Intent i = new Intent(packageContext, LogDreamActivity.class);
-        i.putExtra(DREAM, bndle.getSerializable(DREAM));
+        i.putExtra(USER, bndle.getSerializable(USER));
         return i;
     }
 
@@ -83,10 +85,11 @@ public class LogDreamActivity extends AppCompatActivity {
                 // villa
             }
             else {
-        /*        Bundle bndl = new Bundle();
-                bndl.putSerializable(DREAM, result);
-*/
-                Intent i = ShowDreamActivity.DreamIntent(LogDreamActivity.this, result);
+                mUser.addDream(result);
+                Bundle bndl = new Bundle();
+                bndl.putSerializable(USER, mUser);
+
+                Intent i = ShowDiaryActivity.nameIntent(LogDreamActivity.this, bndl);
                 startActivity(i);
             }
         }

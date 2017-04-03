@@ -40,16 +40,18 @@ public class LogDreamManager {
         try {
             String uri = Uri.parse(serverurl)
                     .buildUpon()
-                    .appendQueryParameter("userId", postdata.getName())
+                    .appendQueryParameter("userId", String.valueOf(postdata.getUserId()))
                     .appendQueryParameter("title", postdata.getName())
                     .appendQueryParameter("content", postdata.getContent())
-                    .appendQueryParameter("date", postdata.getDate().toString())
+                    .appendQueryParameter("year", String.valueOf(postdata.getDate().getYear()))
+                    .appendQueryParameter("month", String.valueOf(postdata.getDate().getMonth()))
+                    .appendQueryParameter("day", String.valueOf(postdata.getDate().getDay()))
                     .build().toString();
             String res = getUrlString(uri);
             Log.i(TAG, "Received: " + res);
 
             JSONObject jsonob = new JSONObject(res);
-
+            dream.setName(jsonob.getString("title"));
             dream.setUserId(jsonob.getInt("userId"));
             dream.setContent(jsonob.getString("content"));
             dream.setId(jsonob.getInt("id"));
