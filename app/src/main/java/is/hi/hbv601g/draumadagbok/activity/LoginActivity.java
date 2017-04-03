@@ -1,8 +1,7 @@
 package is.hi.hbv601g.draumadagbok.activity;
 
-import android.content.Context;
+
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,7 +18,6 @@ import is.hi.hbv601g.draumadagbok.manager.LoginManager;
 import is.hi.hbv601g.draumadagbok.R;
 import is.hi.hbv601g.draumadagbok.model.User;
 
-import static android.content.ContentValues.TAG;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String USER = "is.hi.hbv601g.draumadagbok.user";
@@ -72,7 +70,6 @@ public class LoginActivity extends AppCompatActivity {
         mSignupButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                //TODO: Make a signupActivity and signupManager
                 Intent i = SignupActivity.nameIntent(LoginActivity.this, "guest");
                 startActivity(i);
             }

@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
-import static android.content.ContentValues.TAG;
 
 import is.hi.hbv601g.draumadagbok.R;
 import is.hi.hbv601g.draumadagbok.fragment.DiaryFragment;

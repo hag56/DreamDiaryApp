@@ -16,9 +16,8 @@ import is.hi.hbv601g.draumadagbok.manager.LogDreamManager;
 import is.hi.hbv601g.draumadagbok.model.User;
 
 import java.util.Calendar;
-import java.util.Date;
 
-//TODO: Make  a manager who connects to server and send in dream
+
 //TODO: Make arrangements for Guest dream
 public class LogDreamActivity extends AppCompatActivity {
     private static final String DREAM = "is.hi.hbv601g.draumadagbok.dream";
@@ -60,10 +59,6 @@ public class LogDreamActivity extends AppCompatActivity {
                     new InsertDreamTask().execute(dream);
                 }
 
-                /*
-                Intent i = ShowDreamActivity.DreamIntent(LogDreamActivity.this, title, innihald);
-                startActivity(i);
-                */
             }
         });
     }

@@ -4,22 +4,12 @@ import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.Calendar;
 import java.util.Date;
-
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.client.RestTemplate;
 
 import is.hi.hbv601g.draumadagbok.model.Dream;
 import is.hi.hbv601g.draumadagbok.model.User;
 
-import static android.content.ContentValues.TAG;
 import static is.hi.hbv601g.draumadagbok.manager.ConnectionManager.getUrlString;
 import static is.hi.hbv601g.draumadagbok.manager.ConnectionManager.serverurl;
 
@@ -46,7 +36,7 @@ public class LoginManager {
                     .appendQueryParameter("pass", postdata.getPassword())
                     .build().toString();
             String res = getUrlString(uri);
-            Log.i(TAG, "Received: " + res);
+
 
             //parse response
             JSONObject jsonob = new JSONObject(res);

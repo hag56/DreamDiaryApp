@@ -1,25 +1,10 @@
 package is.hi.hbv601g.draumadagbok.manager;
 
 import android.net.Uri;
-import android.util.Log;
-
-import org.json.JSONArray;
 import org.json.JSONObject;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.client.RestTemplate;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.Calendar;
-import java.util.Date;
 
 import is.hi.hbv601g.draumadagbok.model.Dream;
-import is.hi.hbv601g.draumadagbok.model.User;
-
-import static android.content.ContentValues.TAG;
 import static is.hi.hbv601g.draumadagbok.manager.ConnectionManager.getUrlString;
 
 /**

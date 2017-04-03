@@ -5,14 +5,6 @@ import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.client.RestTemplate;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -62,7 +54,6 @@ public class SignupManager {
                 int yr = jsdate.getInt("year");
                 int day = jsdate.getInt("dayOfMonth");
                 int mnth = jsdate.getInt("monthValue");
-                String sd = String.valueOf(yr) + "-"  + String.valueOf(mnth)+ "-" + String.valueOf(day);
                 Calendar cal = Calendar.getInstance();
                 cal.set(yr,mnth,day);
                 Date date = cal.getTime();

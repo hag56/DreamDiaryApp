@@ -3,20 +3,16 @@ package is.hi.hbv601g.draumadagbok.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.UUID;
-
 import is.hi.hbv601g.draumadagbok.R;
-import is.hi.hbv601g.draumadagbok.manager.ShowDiaryManager;
 import is.hi.hbv601g.draumadagbok.model.Dream;
 
-import static android.content.ContentValues.TAG;
+
 
 
 public class DreamFragment extends Fragment {

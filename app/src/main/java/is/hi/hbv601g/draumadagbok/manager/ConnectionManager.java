@@ -45,14 +45,18 @@ public class ConnectionManager {
             return out.toByteArray();
         } finally { conn.disconnect(); }
     }
+
+
     public static String getUrlString(String uri) throws IOException {
         return new String(getUrlBytes(uri));
     }
+
+
+
     // Attempt at using POST instead of GET
     public static User POSTData(String usl, User param){
         Log.i(TAG, "Started");
         try {
-            Log.i(TAG, "trying");
             RestTemplate restTemplate = new RestTemplate();
             restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 
