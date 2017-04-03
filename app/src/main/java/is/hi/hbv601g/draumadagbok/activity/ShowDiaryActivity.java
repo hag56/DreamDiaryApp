@@ -21,7 +21,6 @@ public  class ShowDiaryActivity extends SingleFragmentActivity
     @Override
     public Fragment createFragment(){
         User user = (User) getIntent().getSerializableExtra(USER);
-        Log.i(TAG, user.toString());
         return DiaryFragment.newInstance(user);
     }
 
