@@ -51,12 +51,12 @@ public class LogDreamManager {
             Log.i(TAG, "Received: " + res);
 
             JSONObject jsonob = new JSONObject(res);
-            dream.setName(jsonob.getString("title"));
+            dream.setName(jsonob.getString("name"));
             dream.setUserId(jsonob.getInt("userId"));
             dream.setContent(jsonob.getString("content"));
             dream.setId(jsonob.getInt("id"));
             dream.setInterpretation(jsonob.getString("interpretation"));
-
+            Log.i("Interp:", jsonob.getString("interpretation"));
             JSONObject jsdate = jsonob.getJSONObject("date");
             int yr = jsdate.getInt("year");
             int day = jsdate.getInt("dayOfMonth");

@@ -72,7 +72,7 @@ public class LogDreamActivity extends AppCompatActivity {
         return i;
     }
 
-    //TODO: Make an async class to send in the dream
+
     private class InsertDreamTask extends AsyncTask<Dream,Void,Dream> {
         @Override
         protected Dream doInBackground(Dream... params) {
@@ -81,17 +81,14 @@ public class LogDreamActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Dream result) {
-            if (/* villa */ false) {
-                // villa
-            }
-            else {
-                mUser.addDream(result);
-                Bundle bndl = new Bundle();
-                bndl.putSerializable(USER, mUser);
 
-                Intent i = ShowDiaryActivity.nameIntent(LogDreamActivity.this, bndl);
-                startActivity(i);
-            }
+            mUser.addDream(result);
+            Bundle bndl = new Bundle();
+            bndl.putSerializable(USER, mUser);
+
+            Intent i = ShowDiaryActivity.nameIntent(LogDreamActivity.this, bndl);
+            startActivity(i);
+
         }
     }
 }
