@@ -18,6 +18,7 @@ import is.hi.hbv601g.draumadagbok.manager.SignupManager;
 
 public class SignupActivity extends AppCompatActivity {
     private static final String USER = "is.hi.hbv601g.draumadagbok.user";
+
     SignupManager sm = new SignupManager();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
