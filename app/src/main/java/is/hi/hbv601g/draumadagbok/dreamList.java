@@ -32,7 +32,7 @@ public class dreamList implements Serializable{
     }
 
     public void addDream(Dream dream){
-        this.dreams.add(dream);
+        this.dreams.add(0,dream);
     }
 
 }
