@@ -18,13 +18,13 @@ import is.hi.hbv601g.draumadagbok.model.User;
 
 import java.util.Calendar;
 
+import static is.hi.hbv601g.draumadagbok.manager.LogDreamManager.createDream;
 
 
 public class LogDreamActivity extends AppCompatActivity {
 
     private static final String USER = "is.hi.hbv601g.draumadagbok.user";
 
-    LogDreamManager ldm = new LogDreamManager();
     User mUser;
 
     @Override
@@ -66,18 +66,18 @@ public class LogDreamActivity extends AppCompatActivity {
             }
         });
     }
-    //for data transfer
+    //for data transfer into this activity from other activities
     public static Intent nameIntent(Context packageContext, Bundle bndle){
         Intent i = new Intent(packageContext, LogDreamActivity.class);
         i.putExtra(USER, bndle.getSerializable(USER));
         return i;
     }
 
-
+    //for data transfer to server
     private class InsertDreamTask extends AsyncTask<Dream,Void,Dream> {
         @Override
         protected Dream doInBackground(Dream... params) {
-            return ldm.createDream(params[0]);
+            return createDream(params[0]);
         }
 
         @Override

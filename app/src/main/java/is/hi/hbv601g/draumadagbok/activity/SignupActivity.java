@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import is.hi.hbv601g.draumadagbok.R;
+import is.hi.hbv601g.draumadagbok.manager.ConnectionManager;
 import is.hi.hbv601g.draumadagbok.model.User;
 import is.hi.hbv601g.draumadagbok.manager.SignupManager;
 
@@ -38,7 +39,7 @@ public class SignupActivity extends AppCompatActivity {
                 String p1 = pass.getText().toString();
                 String p2 = passconfirm.getText().toString();
 
-                //checking form
+
                 if (username.length() < 4){
                     Toast.makeText(getBaseContext(), R.string.stutt_notandanafn, Toast.LENGTH_SHORT).show();
                 }
@@ -51,7 +52,7 @@ public class SignupActivity extends AppCompatActivity {
                 else {
                     User user = new User();
                     user.setName(username.getText().toString());
-                    user.setPassword(pass.getText().toString());
+                    user.setPassword(ConnectionManager.Encrypt(pass.getText().toString()));
                     new InsertUserTask().execute(user);
                 }
             }

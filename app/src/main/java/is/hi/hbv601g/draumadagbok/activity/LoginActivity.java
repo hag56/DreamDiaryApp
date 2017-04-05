@@ -5,15 +5,13 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+import org.springframework.util.Base64Utils;
 
-//import org.springframework.util.support.Base64;
-
+import is.hi.hbv601g.draumadagbok.manager.ConnectionManager;
 import is.hi.hbv601g.draumadagbok.manager.LoginManager;
 import is.hi.hbv601g.draumadagbok.R;
 import is.hi.hbv601g.draumadagbok.model.User;
@@ -26,7 +24,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         Button mLoginButton = (Button) findViewById(R.id.login_button);
         Button mSkipButton = (Button) findViewById(R.id.skip_button);
         Button mSignupButton = (Button) findViewById(R.id.signup_button);
@@ -47,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
                 else {
                     User user = new User();
                     user.setName(nafn);
-                    //word = stringEncrypt(word);
+                    word = ConnectionManager.Encrypt(word);
 
                     user.setPassword(word);
                     new FetchUserTask().execute(user);
@@ -76,22 +73,8 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    protected String stringEncrypt(String pass) {
-        String bytesEncoded = Base64.encodeToString(pass.getBytes(), 0);
-        String reverse = new StringBuilder(bytesEncoded).reverse().toString();
-        reverse = reverse + "HenryErBestur";
-        String bytesEncoded2 = Base64.encodeToString(reverse.getBytes(), 0);
-        return bytesEncoded2;
-    }
 
-    protected String stringDecrypt(String secret) {
-        byte[] valueDecoded= Base64.decode(secret.getBytes(), 0);
-        String pass = new String(valueDecoded);
-        pass = pass.substring(0,(pass.length() - 13));
-        String reverse = new StringBuilder(pass).reverse().toString();
-        byte[] valueDecoded2= Base64.decode(reverse.getBytes(), 0);
-        return new String(valueDecoded2);
-    }
+
 
     //Async class to get User from Server
     private class FetchUserTask extends AsyncTask<User,Void,User> {

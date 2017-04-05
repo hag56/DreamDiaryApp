@@ -42,7 +42,7 @@ public class LoginManager {
             JSONObject jsonob = new JSONObject(res);
             User user = new User(jsonob.getInt("id"),jsonob.getString("name"),"");
             JSONArray jsonA = jsonob.getJSONArray("dreams");
-            Log.i("Fjöldi drauma: ", String.valueOf(jsonA.length()));
+
             for(int i = 0; i < jsonA.length(); i++){
                 JSONObject jsDream = jsonA.getJSONObject(i);
 

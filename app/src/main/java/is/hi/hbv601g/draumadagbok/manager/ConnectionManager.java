@@ -3,6 +3,7 @@ package is.hi.hbv601g.draumadagbok.manager;
 import android.util.Log;
 
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.util.Base64Utils;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.ByteArrayOutputStream;
@@ -26,6 +27,19 @@ public class ConnectionManager {
 
     }
 
+
+    //for encrypting password before sending
+    public static String Encrypt(String pass){
+        return stringEncrypt(pass);
+    }
+
+    protected static String stringEncrypt(String pass) {
+        String bytesEncoded = Base64Utils.encodeToString(pass.getBytes());
+        String reverse = new StringBuilder(bytesEncoded).reverse().toString();
+        reverse = reverse + "HenryErBestur";
+        String bytesEncoded2 = Base64Utils.encodeToString(reverse.getBytes());
+        return bytesEncoded2;
+    }
 
     public static byte[] getUrlBytes(String uri) throws IOException {
         URL url = new URL(uri);
