@@ -1,6 +1,5 @@
 package is.hi.hbv601g.draumadagbok.manager;
 import android.net.Uri;
-import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -66,10 +65,6 @@ public class LoginManager {
                 user.addDream(dream);
             }
             return user;
-
-
-            //User res = POSTData(serverurl, postdata);
-            //return res;
         }
         catch(Exception e){
             e.printStackTrace();

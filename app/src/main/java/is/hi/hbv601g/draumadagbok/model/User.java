@@ -5,9 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.List;
 
-import is.hi.hbv601g.draumadagbok.dreamList;
-import is.hi.hbv601g.draumadagbok.model.Dream;
-
 /**
  * Created by Halli on 18.3.2017.
  */

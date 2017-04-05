@@ -1,8 +1,6 @@
 package is.hi.hbv601g.draumadagbok.manager;
 
 import android.net.Uri;
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.Calendar;
@@ -11,7 +9,6 @@ import java.util.Date;
 import is.hi.hbv601g.draumadagbok.model.Dream;
 import is.hi.hbv601g.draumadagbok.model.User;
 
-import static android.content.ContentValues.TAG;
 import static is.hi.hbv601g.draumadagbok.manager.ConnectionManager.getUrlString;
 
 /**
@@ -30,15 +27,17 @@ public class SignupManager {
 
 
         try {
-
+            //prepare url
             String uri = Uri.parse(serverurl)
                     .buildUpon()
                     .appendQueryParameter("name", postdata.getName())
                     .appendQueryParameter("pass", postdata.getPassword())
                     .build().toString();
-            String res = getUrlString(uri);
-            Log.i(TAG, "Received: " + res);
 
+            //GET request
+            String res = getUrlString(uri);
+
+            //parse response
             JSONObject jsonob = new JSONObject(res);
             User user = new User(jsonob.getInt("id"),jsonob.getString("name"),"");
             JSONArray jsonA = jsonob.getJSONArray("dreams");
@@ -66,9 +65,6 @@ public class SignupManager {
             }
             return user;
 
-
-            //User res = POSTData(serverurl, postdata);
-            //return res;
         }
         catch(Exception e){
             e.printStackTrace();

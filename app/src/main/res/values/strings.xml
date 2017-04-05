@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">DraumaDagbok</string>
+    <string name="fylla_reiti">Notandanafn og lykilorð vantar</string>
+    <string name="rangt_inn">Rangt notandanafn eða lykilorð.</string>
+    <string name="ekki_sama_lykilorð">Lykilorð er ekki það sama í báðum reitum.</string>
+    <string name="notandi_til">Notandi er þegar til með þessu notandanafni</string>
+    <string name="stutt_notandanafn">Notandanafn of stutt</string>
+    <string name="stutt_lykilorð">Lykilorð of stutt</string>
+    <string name="tomur_titill">Titil vantar</string>
+    <string name="tomur_draumur">Texta draums vantar</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

@@ -53,6 +53,8 @@ public class ConnectionManager {
 
 
 
+
+    // OBSOLETE!! KEEP FOR EDUCATIONAL PURPOSE
     // Attempt at using POST instead of GET
     public static User POSTData(String usl, User param){
         Log.i(TAG, "Started");

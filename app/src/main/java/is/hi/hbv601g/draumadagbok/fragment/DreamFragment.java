@@ -52,7 +52,7 @@ public class DreamFragment extends Fragment {
         if (getArguments() != null) {
             mDream = (Dream) getArguments().getSerializable(DREAM);
             if(mDream.getName().contentEquals("null")){
-                title.setText("Titil vantar");
+                title.setText(R.string.tomur_titill);
 
                 content.setText(mDream.getContent());
                 interp.setText(mDream.getInterpretation());

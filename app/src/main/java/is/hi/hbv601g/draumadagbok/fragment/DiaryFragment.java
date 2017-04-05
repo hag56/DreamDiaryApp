@@ -1,28 +1,21 @@
 package is.hi.hbv601g.draumadagbok.fragment;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
 import is.hi.hbv601g.draumadagbok.R;
-import is.hi.hbv601g.draumadagbok.dreamList;
 import is.hi.hbv601g.draumadagbok.model.Dream;
 import is.hi.hbv601g.draumadagbok.model.User;
 
-import static android.content.ContentValues.TAG;
 import static is.hi.hbv601g.draumadagbok.R.id.dream_recycler_view;
 
 
@@ -102,7 +95,7 @@ public class DiaryFragment extends Fragment {
         public void bind(Dream Dream) {
             mDream = Dream;
             if (mDream.getName().contentEquals("null")){
-                mTitleTextView.setText("Enginn titill" );
+                mTitleTextView.setText(R.string.tomur_titill );
                 mDateTextView.setText(mDream.getDate().toString());
             }
             else{
@@ -114,9 +107,6 @@ public class DiaryFragment extends Fragment {
         @Override
         public void onClick(View view) {
             mListener.onDreamSelected(mDream);
-            /*            Toast.makeText(getActivity(),
-                    mDream.getName() + " clicked!", Toast.LENGTH_SHORT)
-                    .show();*/
         }
     }
 

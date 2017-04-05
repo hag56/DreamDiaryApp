@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import is.hi.hbv601g.draumadagbok.R;
 import is.hi.hbv601g.draumadagbok.model.User;
@@ -31,19 +32,21 @@ public class SignupActivity extends AppCompatActivity {
         mSignupButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                //TODO: validate info from signup form
                 EditText username = (EditText) findViewById(R.id.userName);
                 EditText pass = (EditText) findViewById(R.id.password1);
                 EditText passconfirm = (EditText) findViewById(R.id.password2);
                 String p1 = pass.getText().toString();
                 String p2 = passconfirm.getText().toString();
-                TextView villa = (TextView) findViewById(R.id.errorGluggi);
 
-                Log.i("Bleh", p1);
-                Log.i("Bleh", p2);
-
-                if (!p1.equals(p2)) {
-                    villa.setText("Villa: Lykilorð er ekki það sama í báðum reitum.");
+                //checking form
+                if (username.length() < 4){
+                    Toast.makeText(getBaseContext(), R.string.stutt_notandanafn, Toast.LENGTH_SHORT).show();
+                }
+                else if(pass.length() < 4 ){
+                    Toast.makeText(getBaseContext(), R.string.stutt_lykilorð, Toast.LENGTH_SHORT).show();
+                }
+                else if (!p1.equals(p2)) {
+                    Toast.makeText(getBaseContext(), R.string.ekki_sama_lykilorð, Toast.LENGTH_SHORT).show();
                 }
                 else {
                     User user = new User();
@@ -54,16 +57,13 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
     }
-    private static final String USER_NAME = "is.hi.hbv601g.draumadagbok.uname";
-    public static Intent nameIntent(Context packageContext, String name){
+
+    public static Intent nameIntent(Context packageContext){
         Intent i = new Intent(packageContext, SignupActivity.class);
-        i.putExtra(USER_NAME, name);
         return i;
     }
 
-    //TODO: Make async class for network work
-    //TODO: Create Manager class for network work
-    //TODO: OnPostExecute
+
     private class InsertUserTask extends AsyncTask<User,Void,User> {
         @Override
         protected User doInBackground(User... params) {
@@ -73,23 +73,9 @@ public class SignupActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(User result) {
             if (result.getId() == 0) { // ID er 0 ef user er til
-                TextView villa = (TextView) findViewById(R.id.errorGluggi);
-                villa.setText("Villa: Notandi er þegar til með þessu notendanafni.");
+                Toast.makeText(getBaseContext(), R.string.notandi_til, Toast.LENGTH_SHORT).show();
             }
             else {
-
-                /*
-                //Saving basic user info
-                Context context = getApplicationContext();
-                SharedPreferences sharedPref = context.getSharedPreferences("info", Context.MODE_PRIVATE);
-                sharedPref.edit()
-                        .putString("name", result.getName())
-                        .putInt("id", result.getId())
-                        .apply();
-
-                Log.i("Result", "" + result.getId());
-                */
-
                 Bundle bndl = new Bundle();
                 bndl.putSerializable(USER, result);
 

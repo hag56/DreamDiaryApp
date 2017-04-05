@@ -1,4 +1,4 @@
-package is.hi.hbv601g.draumadagbok;
+package is.hi.hbv601g.draumadagbok.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -10,7 +10,7 @@ import is.hi.hbv601g.draumadagbok.model.Dream;
 /**
  * Created by Halli on 19.3.2017.
  */
-//bean class, intended for POST operations
+//bean class, intended to help with POST operations
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class dreamList implements Serializable{
 
@@ -19,10 +19,7 @@ public class dreamList implements Serializable{
     public dreamList(){
         dreams = new ArrayList<Dream>();
     }
-    public dreamList(List<Dream> dreams){
-        this.dreams = dreams;
 
-    }
     public List<Dream> getDreams(){
         return this.dreams;
     }

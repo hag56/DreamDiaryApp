@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import is.hi.hbv601g.draumadagbok.R;
 import is.hi.hbv601g.draumadagbok.model.Dream;
@@ -18,9 +19,9 @@ import is.hi.hbv601g.draumadagbok.model.User;
 import java.util.Calendar;
 
 
-//TODO: Make arrangements for Guest dream
+
 public class LogDreamActivity extends AppCompatActivity {
-    private static final String DREAM = "is.hi.hbv601g.draumadagbok.dream";
+
     private static final String USER = "is.hi.hbv601g.draumadagbok.user";
 
     LogDreamManager ldm = new LogDreamManager();
@@ -32,7 +33,7 @@ public class LogDreamActivity extends AppCompatActivity {
         setContentView(R.layout.activity_log_dream);
 
         mUser = (User) getIntent().getSerializableExtra(USER);
-        Log.i("User", mUser.toString());
+
 
         Button mLogDreamButton = (Button)findViewById(R.id.submit_dream);
         mLogDreamButton.setOnClickListener(new View.OnClickListener(){
@@ -45,8 +46,11 @@ public class LogDreamActivity extends AppCompatActivity {
                 EditText texti = (EditText) findViewById(R.id.draumtitill);
                 String innihald = texti.getText().toString();
 
-                if (title.length() == 0 || innihald.length() == 0) {
-                    // Setja villu: "fylla verður í báða reiti"
+                if (title.length() == 0)  {
+                    Toast.makeText(getBaseContext(), R.string.tomur_titill, Toast.LENGTH_SHORT).show();
+                }
+                else if (innihald.length() == 0){
+                    Toast.makeText(getBaseContext(), R.string.tomur_draumur, Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Dream dream = new Dream();
@@ -55,7 +59,7 @@ public class LogDreamActivity extends AppCompatActivity {
                     Calendar cal = Calendar.getInstance();
                     dream.setDate(cal.getTime());
                     dream.setUserId(mUser.getId());
-                    // meira?
+
                     new InsertDreamTask().execute(dream);
                 }
 
@@ -78,7 +82,6 @@ public class LogDreamActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Dream result) {
-
             mUser.addDream(result);
             Bundle bndl = new Bundle();
             bndl.putSerializable(USER, mUser);

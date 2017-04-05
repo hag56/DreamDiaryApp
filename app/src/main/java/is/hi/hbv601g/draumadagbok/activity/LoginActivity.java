@@ -6,11 +6,11 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 //import org.springframework.util.support.Base64;
 
@@ -40,9 +40,8 @@ public class LoginActivity extends AppCompatActivity {
                 String nafn = texti.getText().toString();
                 EditText pass = (EditText) findViewById(R.id.editText2);
                 String word = pass.getText().toString();
-                TextView villa = (TextView) findViewById(R.id.textView2);
                 if (texti.length() == 0 || pass.length() == 0) {
-                    villa.setText("Villa: Reitir þurfa að vera útfylltir.");
+                    Toast.makeText(getBaseContext(), R.string.fylla_reiti, Toast.LENGTH_SHORT).show();
                 }
                 else {
                     User user = new User();
@@ -70,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
         mSignupButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent i = SignupActivity.nameIntent(LoginActivity.this, "guest");
+                Intent i = SignupActivity.nameIntent(LoginActivity.this);
                 startActivity(i);
             }
         });
@@ -103,19 +102,9 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(User result) {
             if (result.getId() == 0) { // ID er 0 ef user er ekki í gagnagrunninum
-                TextView villa = (TextView) findViewById(R.id.textView2);
-                villa.setText("Villa: Notandanafn eða lykilorð er rangt.");
+                Toast.makeText(getBaseContext(), R.string.rangt_inn, Toast.LENGTH_SHORT).show();
             }
             else {
-                //Saving basic user info
-/*                Context context = getApplicationContext();
-                SharedPreferences sharedPref = context.getSharedPreferences("info", Context.MODE_PRIVATE);
-                sharedPref.edit()
-                        .putString("name", result.getName())
-                        .putInt("id", result.getId())
-                        .apply();
-*/
-                Log.i("Result", "" + result.toString());
                 Bundle args = new Bundle();
                 args.putSerializable(USER, result);
                 //Start next activity
