@@ -1,6 +1,7 @@
 package is.hi.hbv601g.draumadagbok.activity;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -73,7 +74,11 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-
+    //for data transfer into this activity from other activities
+    public static Intent nameIntent(Context packageContext){
+        Intent i = new Intent(packageContext, LoginActivity.class);
+        return i;
+    }
 
 
     //Async class to get User from Server

@@ -64,9 +64,19 @@ public class DiaryFragment extends Fragment {
             @Override
             public void onClick(View v){
                 Bundle b = new Bundle();
-                b.putSerializable(USER, getArguments().getSerializable(USER));
-                Intent i = MainActivity.nameIntent(getContext(), b);
-                startActivity(i);
+
+                //check for guest user
+                User us = (User) getArguments().getSerializable(USER);
+                if(us.getId() != 0){
+                    b.putSerializable(USER, us);
+                    Intent i = MainActivity.nameIntent(getContext(), b);
+                    startActivity(i);
+                }
+                else{
+                    Intent i = LoginActivity.nameIntent(getContext());
+                    startActivity(i);
+                }
+
             }
         });
 
