@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.view.View;
+import android.widget.Button;
 
 import is.hi.hbv601g.draumadagbok.R;
 import is.hi.hbv601g.draumadagbok.fragment.DiaryFragment;
@@ -15,9 +18,12 @@ import is.hi.hbv601g.draumadagbok.model.User;
 public  class ShowDiaryActivity extends SingleFragmentActivity
         implements DiaryFragment.Callbacks, DreamFragment.OnDreamFragmentInteractionListener{
 
+
     //overwritten creation method
     @Override
     public Fragment createFragment(){
+
+
         User user = (User) getIntent().getSerializableExtra(USER);
         return DiaryFragment.newInstance(user);
     }
