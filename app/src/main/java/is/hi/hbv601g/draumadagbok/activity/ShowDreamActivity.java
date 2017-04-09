@@ -2,19 +2,12 @@ package is.hi.hbv601g.draumadagbok.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.LayoutRes;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.widget.TextView;
 
-import java.util.UUID;
-
-import is.hi.hbv601g.draumadagbok.R;
-import is.hi.hbv601g.draumadagbok.fragment.DiaryFragment;
 import is.hi.hbv601g.draumadagbok.fragment.DreamFragment;
 import is.hi.hbv601g.draumadagbok.model.Dream;
 
+//Activity for supporting fragment of a selected dream in diary
 public class ShowDreamActivity extends SingleFragmentActivity
         implements DreamFragment.OnDreamFragmentInteractionListener{
 

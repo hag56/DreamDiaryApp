@@ -5,16 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.view.View;
-import android.widget.Button;
 
 import is.hi.hbv601g.draumadagbok.R;
 import is.hi.hbv601g.draumadagbok.fragment.DiaryFragment;
 import is.hi.hbv601g.draumadagbok.fragment.DreamFragment;
 import is.hi.hbv601g.draumadagbok.model.Dream;
 import is.hi.hbv601g.draumadagbok.model.User;
-//Main activity
+
+//Activity for showing saved dreams
 public  class ShowDiaryActivity extends SingleFragmentActivity
         implements DiaryFragment.Callbacks, DreamFragment.OnDreamFragmentInteractionListener{
 
@@ -22,8 +20,6 @@ public  class ShowDiaryActivity extends SingleFragmentActivity
     //overwritten creation method
     @Override
     public Fragment createFragment(){
-
-
         User user = (User) getIntent().getSerializableExtra(USER);
         return DiaryFragment.newInstance(user);
     }
@@ -42,14 +38,15 @@ public  class ShowDiaryActivity extends SingleFragmentActivity
         }
     }
 
-    //listener for dream
+
     @Override
-    public void onDreamFragmentInteraction(Dream dream){}
+    public void onDreamFragmentInteraction(Dream dream){
+        //required but non implemented listener for dream
+    }
 
     private static final String USER = "is.hi.hbv601g.draumadagbok.user";
-    //to be able to receive data via intent
+    //required to be able to receive data and start intent
     public static Intent nameIntent(Context packageContext, Bundle bndle) {
-
         Intent i = new Intent(packageContext, ShowDiaryActivity.class);
         i.putExtra(USER, bndle.getSerializable(USER));
         return i;

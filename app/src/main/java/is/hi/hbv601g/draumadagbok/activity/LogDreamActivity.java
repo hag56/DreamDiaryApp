@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,19 +12,20 @@ import android.widget.Toast;
 
 import is.hi.hbv601g.draumadagbok.R;
 import is.hi.hbv601g.draumadagbok.model.Dream;
-import is.hi.hbv601g.draumadagbok.manager.LogDreamManager;
 import is.hi.hbv601g.draumadagbok.model.User;
+import static is.hi.hbv601g.draumadagbok.manager.LogDreamManager.createDream;
 
 import java.util.Calendar;
 
-import static is.hi.hbv601g.draumadagbok.manager.LogDreamManager.createDream;
 
 
+//Activity for filling out and sending in dream
 public class LogDreamActivity extends AppCompatActivity {
 
     private static final String USER = "is.hi.hbv601g.draumadagbok.user";
 
     User mUser;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

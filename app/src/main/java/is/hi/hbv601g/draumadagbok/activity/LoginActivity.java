@@ -1,6 +1,5 @@
 package is.hi.hbv601g.draumadagbok.activity;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -10,17 +9,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import org.springframework.util.Base64Utils;
 
 import is.hi.hbv601g.draumadagbok.manager.ConnectionManager;
 import is.hi.hbv601g.draumadagbok.manager.LoginManager;
 import is.hi.hbv601g.draumadagbok.R;
 import is.hi.hbv601g.draumadagbok.model.User;
 
-
+//Activity for login in to the DreamDiary service
 public class LoginActivity extends AppCompatActivity {
     private static final String USER = "is.hi.hbv601g.draumadagbok.user";
-    LoginManager lm = new LoginManager();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,28 +27,25 @@ public class LoginActivity extends AppCompatActivity {
         Button mSignupButton = (Button) findViewById(R.id.signup_button);
 
 
-
         mLoginButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
 
-                EditText texti = (EditText) findViewById(R.id.editText);
-                String nafn = texti.getText().toString();
+                EditText text = (EditText) findViewById(R.id.editText);
+                String uname = text.getText().toString();
                 EditText pass = (EditText) findViewById(R.id.editText2);
                 String word = pass.getText().toString();
-                if (texti.length() == 0 || pass.length() == 0) {
+                if (text.length() == 0 || pass.length() == 0) {
                     Toast.makeText(getBaseContext(), R.string.fylla_reiti, Toast.LENGTH_SHORT).show();
                 }
                 else {
                     User user = new User();
-                    user.setName(nafn);
+                    user.setName(uname);
                     word = ConnectionManager.Encrypt(word);
 
                     user.setPassword(word);
                     new FetchUserTask().execute(user);
                 }
-
-
             }
         });
         //event listeners
@@ -76,8 +70,7 @@ public class LoginActivity extends AppCompatActivity {
 
     //for data transfer into this activity from other activities
     public static Intent nameIntent(Context packageContext){
-        Intent i = new Intent(packageContext, LoginActivity.class);
-        return i;
+        return new Intent(packageContext, LoginActivity.class);
     }
 
 
@@ -85,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
     private class FetchUserTask extends AsyncTask<User,Void,User> {
         @Override
         protected User doInBackground(User... params) {
-            return lm.loginUser(params[0]);
+            return LoginManager.loginUser(params[0]);
         }
 
         @Override

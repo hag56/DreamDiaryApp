@@ -11,6 +11,7 @@ import is.hi.hbv601g.draumadagbok.R;
 /**
  * Created by Halli on 25.3.2017.
  */
+//Generic fragment activity
 public abstract class SingleFragmentActivity extends FragmentActivity {
     protected abstract Fragment createFragment();
 

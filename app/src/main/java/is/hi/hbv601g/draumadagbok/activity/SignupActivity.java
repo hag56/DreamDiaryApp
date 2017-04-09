@@ -2,15 +2,12 @@ package is.hi.hbv601g.draumadagbok.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import is.hi.hbv601g.draumadagbok.R;
@@ -18,6 +15,7 @@ import is.hi.hbv601g.draumadagbok.manager.ConnectionManager;
 import is.hi.hbv601g.draumadagbok.model.User;
 import is.hi.hbv601g.draumadagbok.manager.SignupManager;
 
+//Activity for signing up for the DreamDiary service
 public class SignupActivity extends AppCompatActivity {
     private static final String USER = "is.hi.hbv601g.draumadagbok.user";
 
@@ -59,12 +57,13 @@ public class SignupActivity extends AppCompatActivity {
         });
     }
 
+    //For starting this activity
     public static Intent nameIntent(Context packageContext){
         Intent i = new Intent(packageContext, SignupActivity.class);
         return i;
     }
 
-
+    //Async task for sending info to server
     private class InsertUserTask extends AsyncTask<User,Void,User> {
         @Override
         protected User doInBackground(User... params) {

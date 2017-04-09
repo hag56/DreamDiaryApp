@@ -19,7 +19,7 @@ import static android.content.ContentValues.TAG;
 /**
  * Created by Halli on 25.3.2017.
  */
-//Specialized connection manager for localhost server
+//Specialized connection manager for DreamDiary app to localhost server
 public class ConnectionManager {
 
     public static final String serverurl = "http://10.0.2.2:8080/mobuser";

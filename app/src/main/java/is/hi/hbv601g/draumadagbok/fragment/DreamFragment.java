@@ -14,7 +14,7 @@ import is.hi.hbv601g.draumadagbok.model.Dream;
 
 
 
-
+//Fragment for handling dream layout
 public class DreamFragment extends Fragment {
 
     private Dream mDream;
@@ -91,19 +91,10 @@ public class DreamFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
 
     //interface for data transfer back to activity
     public interface OnDreamFragmentInteractionListener {
+        //not yet implemented
         void onDreamFragmentInteraction(Dream dream);
     }
 }

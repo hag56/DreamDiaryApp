@@ -27,16 +27,13 @@ public class Dream implements Serializable {
 
     }
 
-
     public Dream(String name, int userId, String content, int id) {
         this.name = name;
         this.userId = userId;
         this.content = content;
         this.id = id;
         this.date = new Date();
-        // this.interpretation = new Interpretation();
     }
-
 
 
     public Dream(int id,
@@ -52,22 +49,6 @@ public class Dream implements Serializable {
         this.date = date;
         this.interpretation = interpretation;
     }
-
-
-    // Notkun: inputDream.interpret()
-    // Fyrir: inputDream er hlutur af tagi Dream.
-    // Eftir: inputDream hefur fengid Interpretation attribute
-    /*
-    protected void interpret() {
-      this.interpretation = (new StringBuilder(this.content).reverse().toString());
-    }
-    */
-
-    // Notkun: editDream(old_dream)
-    // Fyrir: old_dream er hlutur af tagi Dream
-    // Eftir:
-    // Liklega redundant. Notum bara setContent
-    //protected void editDream(Dream old_dream) {}
 
 
     // Only getters and setters bellow this point

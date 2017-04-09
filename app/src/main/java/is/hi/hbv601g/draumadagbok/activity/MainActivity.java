@@ -4,18 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.io.Serializable;
-
 import is.hi.hbv601g.draumadagbok.R;
 import is.hi.hbv601g.draumadagbok.model.User;
 
+//Activity for selecting what to do after login
 public class MainActivity extends AppCompatActivity {
-    //TODO: layout
+
     private static final String USER = "is.hi.hbv601g.draumadagbok.user";
     User mUser;
     @Override
@@ -23,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //get user from intent
         mUser = (User) getIntent().getSerializableExtra(USER);
         //display info on user
         TextView texti = (TextView) findViewById(R.id.textView);
@@ -40,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v){
                 Bundle args = new Bundle();
                 args.putSerializable(USER, mUser);
-                Log.i("Main User", mUser.toString());
                 Intent i = LogDreamActivity.nameIntent(MainActivity.this, args);
                 startActivity(i);
             }
@@ -64,7 +60,5 @@ public class MainActivity extends AppCompatActivity {
         i.putExtra(USER,bndle.getSerializable(USER));
         return i;
     }
-
-
 
 }

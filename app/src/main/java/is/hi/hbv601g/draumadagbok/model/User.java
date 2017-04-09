@@ -31,8 +31,8 @@ public class User implements Serializable {
         this.id = userId;
         this.password = userPassword;
         this.dreams = dreams;
-
     }
+
     public User(int userId, String userName, String userPassword) {
         this.name = userName;
         this.id = userId;
@@ -40,17 +40,7 @@ public class User implements Serializable {
         this.dreams = new dreamList();
     }
 
-    // Notkun:
-    // Fyrir:
-    // Eftir:
-    protected void deleteDream(List<Dream> my_dreams) {
 
-    }
-
-    // possibly redundant
-    protected void updateUserInfo(String name, int id, String password){
-
-    }
 
 
     // Only getters and setters bellow here:

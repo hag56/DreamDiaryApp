@@ -11,6 +11,7 @@ import static is.hi.hbv601g.draumadagbok.manager.ConnectionManager.getUrlString;
  * Created by Halli on 18.3.2017.
  */
 
+//Manager for new dreams
 public class LogDreamManager {
     private static final String serverurl = "http://10.0.2.2:8080/mobdream";
 
@@ -18,12 +19,12 @@ public class LogDreamManager {
 
     }
 
-
     public static Dream createDream(Dream postdata){
 
         Calendar cal = Calendar.getInstance();
         cal.setTime(postdata.getDate());
 
+        //send dream to server
         try {
             String uri = Uri.parse(serverurl)
                     .buildUpon()
@@ -36,7 +37,7 @@ public class LogDreamManager {
                     .build().toString();
             String res = getUrlString(uri);
 
-
+            //receive interpretation
             JSONObject jsonob = new JSONObject(res);
             postdata.setInterpretation(jsonob.getString("interpretation"));
 

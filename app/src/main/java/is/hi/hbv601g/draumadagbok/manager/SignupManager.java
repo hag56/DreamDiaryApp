@@ -14,7 +14,7 @@ import static is.hi.hbv601g.draumadagbok.manager.ConnectionManager.getUrlString;
 /**
  * Created by Halli on 18.3.2017.
  */
-
+//Manager for handling signup for the DreamDiary service
 public class SignupManager {
     private static final String serverurl = "http://10.0.2.2:8080/mobsignup";
 
@@ -22,9 +22,7 @@ public class SignupManager {
 
     }
 
-
     public static User createUser(User postdata){
-
 
         try {
             //prepare url

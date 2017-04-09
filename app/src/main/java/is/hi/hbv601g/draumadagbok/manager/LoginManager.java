@@ -17,17 +17,13 @@ import static is.hi.hbv601g.draumadagbok.manager.ConnectionManager.serverurl;
  * Created by Halli on 18.3.2017.
  */
 
-//Manager to handle logic on login
+//Manager to handle login to the DreamApp service
 public class LoginManager {
 
-
     public LoginManager(){
-
     }
 
-
     public static User loginUser(User postdata){
-
         try {
             //build query
             String uri = Uri.parse(serverurl)
@@ -55,7 +51,6 @@ public class LoginManager {
                 int yr = jsdate.getInt("year");
                 int day = jsdate.getInt("dayOfMonth");
                 int mnth = jsdate.getInt("monthValue");
-                String sd = String.valueOf(yr) + "-"  + String.valueOf(mnth)+ "-" + String.valueOf(day);
                 Calendar cal = Calendar.getInstance();
                 cal.set(yr,mnth,day);
                 Date date = cal.getTime();
@@ -70,9 +65,7 @@ public class LoginManager {
         }
         catch(Exception e){
             e.printStackTrace();
-
         }
-
         return postdata;
     }
 
